@@ -16,13 +16,13 @@ public class TransferResponse {
    // private Integer newTeamId;
     private String teamName;
     private double teamValue;
-    private String playerId;
+    private int playerId;
     private String playerName;
-    private String playerCountry;
-    private double playerMarketValue;
+   // private String playerCountry;
+  //  private double playerMarketValue;
     private double  price;
     private LocalDateTime dateOfTransfer;
-    private boolean  isCompleted;
+  //  private boolean  isCompleted;
 
 
 }

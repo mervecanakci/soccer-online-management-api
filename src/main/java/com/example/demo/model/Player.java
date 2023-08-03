@@ -25,6 +25,7 @@ public class Player {
     private String country;
     private String firstName;
     private String lastName;
+    private  String teamName;
     private double marketValue = 1000000.0;
     @Enumerated(EnumType.STRING)
     private Position position;

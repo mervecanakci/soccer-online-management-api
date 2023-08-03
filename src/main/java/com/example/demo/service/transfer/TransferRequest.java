@@ -15,16 +15,21 @@ public class TransferRequest {
 
  //   private int teamId;
     //    @NotNull
-//    private double teamValue;
+ @JsonIgnore
+    private double teamValue;
 
     private int playerId;
+    @JsonIgnore
+    private String playerName;
+    @JsonIgnore
+    private String teamName;
+
     @JsonIgnore
     private double playerMarketValue;
 
     private double price;
 
-    @JsonIgnore
-    private double teamValue;
+
 
 
     }

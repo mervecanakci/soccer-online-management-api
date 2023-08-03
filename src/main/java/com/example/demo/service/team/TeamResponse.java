@@ -16,6 +16,7 @@ public class TeamResponse {
     private String teamName;
     private double teamValue;
     private String teamCountry;
+
     private List<PlayerResponse> players;
    // private Integer leagueId;
   //  private String leagueName;

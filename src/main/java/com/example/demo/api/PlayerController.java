@@ -4,6 +4,7 @@ package com.example.demo.api;
 import com.example.demo.service.player.PlayerRequest;
 import com.example.demo.service.player.PlayerResponse;
 import com.example.demo.service.player.PlayerService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +30,11 @@ public class PlayerController {
         return service.getById(id);
     }
 
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public List<PlayerResponse> add(@Valid @RequestBody PlayerRequest request) {
-//        return service.add(request);
-//    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<PlayerResponse> add(@Valid @RequestBody PlayerRequest request) {
+        return service.add(request);
+    }
 
     @PutMapping("/{id}")
     public PlayerResponse update(@PathVariable int id, @RequestBody PlayerRequest request) {

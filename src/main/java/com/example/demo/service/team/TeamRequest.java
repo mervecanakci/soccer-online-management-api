@@ -23,7 +23,8 @@ public class TeamRequest {
 
     @JsonIgnore
     public String getRandomTeamName() {
-        return faker.lorem().word();
+        return faker.team().name();
+//        return faker.team().name();
     }
 
     @JsonIgnore

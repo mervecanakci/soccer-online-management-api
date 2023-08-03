@@ -3,12 +3,11 @@ package com.example.demo.service.team;
 
 import com.example.demo.model.Player;
 import com.example.demo.model.Team;
+import com.example.demo.model.Transfer;
+import com.example.demo.model.enums.TransferState;
 import com.example.demo.repository.PlayerRepository;
 import com.example.demo.repository.TeamRepository;
-import com.example.demo.service.player.PlayerBusinessRules;
-import com.example.demo.service.player.PlayerImpl;
-import com.example.demo.service.player.PlayerRequest;
-import com.example.demo.service.player.PlayerResponse;
+import com.example.demo.service.player.*;
 import com.example.demo.service.transfer.TransferBusinessRules;
 import com.example.demo.service.transfer.TransferPlayerRequest;
 import com.github.javafaker.Faker;
@@ -34,6 +33,7 @@ public class TeamImpl implements TeamService {
     private final TransferBusinessRules transferBusinessRules;
     private final PlayerBusinessRules playerBusinessRules;
     private final TeamRepository teamRepository;
+    private final PlayerService playerService;
     private final Random random;
 
     @Override
@@ -98,11 +98,14 @@ public class TeamImpl implements TeamService {
     public TeamResponse addTransferPlayer(@Valid TransferPlayerRequest request) {
         playerBusinessRules.checkIfPlayerExistsById(request.getPlayerId());
         transferBusinessRules.checkIfTransferExistsById(request.getPlayerId());
-        teamBusinessRules.checkIfTeamExistsById(request.getPlayerId());
+        teamBusinessRules.checkIfTeamExistsById(request.getTeamId());
         final double marketValue = playerRepository.findById(request.getPlayerId()).get().getMarketValue(); //marketValue yu playerRepository den çekiyoruz
         transferBusinessRules.checkIfBalanceIsEnough(marketValue, request.getPrice()); //takımıın yeterli bakiyesi var mı diye kontrol ediyoruz
         final Player player = playerRepository.findById(request.getPlayerId()).get(); //playerId ile playerRepository den player çekiyoruz
         final Team team = teamRepository.findById(request.getTeamId()).get(); //teamId ile teamRepository den team çekiyoruz
+        playerService.changeTransferState(request.getPlayerId(), TransferState.NOT_TRANSFERRED);
+       teamRepository.findById(request.getTeamId()).get().setTeamValue(team.getTeamValue() - request.getPrice()); //takımın bakiyesini güncelliyoruz
+       teamRepository.findById(player.getTeam().getId()).get().setTeamValue(team.getTeamValue() + request.getPrice()); //takımın bakiyesini güncelliyoruz
         player.setTeam(team); //player ın takımını setliyoruz
 
         double increasedMarketValue = getIncreasedMarketValue(request); //artan marketValue yu hesaplıyoruz
@@ -111,12 +114,31 @@ public class TeamImpl implements TeamService {
         return mapper.map(team, TeamResponse.class); //team ı döndürüyoruz
     }
 
-    private double getIncreasedMarketValue(TransferPlayerRequest request) {
-        double increasePercentage = 10 + (100 - 10) * random.nextDouble();
-        double increaseAmount = request.getPrice() * increasePercentage / 100;
-        return request.getPrice() + increaseAmount;
+        private double getIncreasedMarketValue(TransferPlayerRequest request) {
+        double increasePercentage = 0.10 + (1.00 - 0.10) * random.nextDouble();
+        double increaseAmount = request.getPrice() * increasePercentage ;
+        System.out.println("increaseAmount = " + increaseAmount);
+            return (int) (request.getPrice() + increaseAmount);
 
     }
+//private double getIncreasedMarketValue(TransferPlayerRequest request) {
+//        double currentMarketValue = request.getPlayerMarketValue();
+//        double increasePercentage = 10 + (100 - 10) * random.nextDouble();
+//        double increaseAmount = currentMarketValue * increasePercentage / 100;
+//        double increasedMarketValue = currentMarketValue + increaseAmount;
+//        request.setPlayerMarketValue(increasedMarketValue);
+//        return increasedMarketValue;
+//}
+
+//    public double getProcessTransfer(Transfer transfer) {
+//        double currentMarketValue = transfer.getPlayerMarketValue();
+//        double increasePercentage = 10 + (100 - 10) * random.nextDouble();
+//        double increaseAmount = currentMarketValue * increasePercentage / 100;
+//        double increasedMarketValue = currentMarketValue + increaseAmount;
+//        transfer.setPlayerMarketValue(increasedMarketValue);
+//
+//        return increasedMarketValue;
+//    }
 
 //    private List<Team> generateTeam() {
 //        List<Team> teams = new ArrayList<>();

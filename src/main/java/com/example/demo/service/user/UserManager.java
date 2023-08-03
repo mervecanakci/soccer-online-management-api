@@ -50,17 +50,10 @@ public class UserManager implements UserService {
     @Transactional
     public UsersResponse add(UserRequest request) {
         rules.checkIfUserExistsByEmail(request.getEmail());
-
         User user = mapper.map(request, User.class);
         repository.save(user);
 
         UsersResponse response = mapper.map(user, UsersResponse.class);
-
-//        TeamRequest teamRequest = new TeamRequest();
-//        TeamResponse teamResponse = teamManager.add(teamRequest);
-//        Team team = mapper.map(teamResponse, Team.class);
-//        team.setUser(user);
-//        teamRepository.save(team);
 
         return response;
     }

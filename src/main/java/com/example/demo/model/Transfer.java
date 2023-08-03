@@ -16,7 +16,9 @@ public class Transfer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String teamName;
-    private int teamValue;
+    private double teamValue;
+    private String playerName;
+    private String playerCountry;
     private double playerMarketValue = 1000000;
     private double  price;
     private LocalDateTime dateOfTransfer;

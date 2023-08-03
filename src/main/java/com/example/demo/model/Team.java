@@ -17,11 +17,8 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String teamName;
-    private double teamValue = 5000000.0;
+    private double teamValue = 5000000;
     private String teamCountry;
-
-
-
 
 
     @OneToMany(mappedBy = "team")
