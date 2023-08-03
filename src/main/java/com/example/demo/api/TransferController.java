@@ -1,8 +1,9 @@
-package com.turkcell.socceronlinemanagement.api;
+package com.example.demo.api;
 
-import com.turkcell.socceronlinemanagement.service.transfer.TransferRequest;
-import com.turkcell.socceronlinemanagement.service.transfer.TransferResponse;
-import com.turkcell.socceronlinemanagement.service.transfer.TransferService;
+
+import com.example.demo.service.transfer.TransferRequest;
+import com.example.demo.service.transfer.TransferResponse;
+import com.example.demo.service.transfer.TransferService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

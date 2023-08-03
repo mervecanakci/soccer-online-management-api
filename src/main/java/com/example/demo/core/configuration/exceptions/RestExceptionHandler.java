@@ -1,9 +1,9 @@
-package com.turkcell.socceronlinemanagement.core.configuration.exceptions;
+package com.example.demo.core.configuration.exceptions;
 
 
-import com.turkcell.socceronlinemanagement.common.constants.ExceptionTypes;
-import com.turkcell.socceronlinemanagement.core.exceptions.BusinessException;
-import com.turkcell.socceronlinemanagement.core.utils.results.ExceptionResult;
+import com.example.demo.common.constants.ExceptionTypes;
+import com.example.demo.core.exceptions.BusinessException;
+import com.example.demo.core.utils.results.ExceptionResult;
 import org.modelmapper.ValidationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

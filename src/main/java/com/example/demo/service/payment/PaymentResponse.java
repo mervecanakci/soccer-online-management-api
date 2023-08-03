@@ -1,10 +1,8 @@
-package com.turkcell.socceronlinemanagement.service.payment;
+package com.example.demo.service.payment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor

@@ -1,10 +1,10 @@
-package kodlama.io.ecommerce.business.dto.requests.update;
+package com.example.demo.service.user;
 
-import jakarta.validation.constraints.Email;
+
+import com.example.demo.common.constants.Messages;
+import com.example.demo.common.constants.Regex;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import kodlama.io.ecommerce.common.constants.Messages;
-import kodlama.io.ecommerce.common.constants.Regex;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateUserRequest {
+public class UserRequest {
 
     @NotBlank
     @Pattern(regexp = Regex.EmailRegex, message = Messages.User.EmailNotValid)

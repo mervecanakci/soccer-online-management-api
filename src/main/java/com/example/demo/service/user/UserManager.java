@@ -1,66 +1,77 @@
-package kodlama.io.ecommerce.business.concretes;
+package com.example.demo.service.user;
 
-import kodlama.io.ecommerce.business.abstracts.UserService;
-import kodlama.io.ecommerce.business.dto.requests.create.CreateUserRequest;
-import kodlama.io.ecommerce.business.dto.requests.update.UpdateUserRequest;
-import kodlama.io.ecommerce.business.dto.responses.create.CreateUserResponse;
-import kodlama.io.ecommerce.business.dto.responses.get.GetUserResponse;
-import kodlama.io.ecommerce.business.dto.responses.get.all.GetAllUsersResponse;
-import kodlama.io.ecommerce.business.dto.responses.update.UpdateUserResponse;
-import kodlama.io.ecommerce.business.rules.UserBusinessRules;
-import kodlama.io.ecommerce.entities.concretes.User;
-import kodlama.io.ecommerce.repository.UserRepository;
+
+import com.example.demo.model.Team;
+import com.example.demo.model.User;
+import com.example.demo.repository.TeamRepository;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.team.TeamImpl;
+import com.example.demo.service.team.TeamRequest;
+import com.example.demo.service.team.TeamResponse;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserManager implements UserService {
     private final UserRepository repository;
     private final ModelMapper mapper;
     private final UserBusinessRules rules;
+    private final TeamImpl teamManager;
+    private final TeamRepository teamRepository;
 
     @Override
-    public List<GetAllUsersResponse> getAll() {
+    public List<UsersResponse> getAll() {
         List<User> users = repository.findAll();
-        List<GetAllUsersResponse> response = users
+        List<UsersResponse> response = users
                 .stream()
-                .map(user -> mapper.map(user, GetAllUsersResponse.class))
+                .map(user -> mapper.map(user, UsersResponse.class))
                 .toList();
 
         return response;
     }
 
     @Override
-    public GetUserResponse getById(int id) {
+    public UsersResponse getById(int id) {
         rules.checkIfUserExists(id);
         User user = repository.findById(id).orElseThrow();
-        GetUserResponse response = mapper.map(user, GetUserResponse.class);
+        UsersResponse response = mapper.map(user, UsersResponse.class);
 
         return response;
     }
 
     @Override
-    public CreateUserResponse add(CreateUserRequest request) {
+    @Transactional
+    public UsersResponse add(UserRequest request) {
         rules.checkIfUserExistsByEmail(request.getEmail());
+
         User user = mapper.map(request, User.class);
-        user.setId(0);
         repository.save(user);
-        CreateUserResponse response = mapper.map(user, CreateUserResponse.class);
+
+        UsersResponse response = mapper.map(user, UsersResponse.class);
+
+//        TeamRequest teamRequest = new TeamRequest();
+//        TeamResponse teamResponse = teamManager.add(teamRequest);
+//        Team team = mapper.map(teamResponse, Team.class);
+//        team.setUser(user);
+//        teamRepository.save(team);
 
         return response;
     }
 
     @Override
-    public UpdateUserResponse update(int id, UpdateUserRequest request) {
+    public UsersResponse update(int id, UserRequest request) {
         rules.checkIfUserExists(id);
         User user = mapper.map(request, User.class);
         user.setId(id);
         repository.save(user);
-        UpdateUserResponse response = mapper.map(user, UpdateUserResponse.class);
+        UsersResponse response = mapper.map(user, UsersResponse.class);
 
         return response;
     }

@@ -1,7 +1,8 @@
-package com.turkcell.socceronlinemanagement.repository;
+package com.example.demo.repository;
 
-import com.turkcell.socceronlinemanagement.model.Player;
-import com.turkcell.socceronlinemanagement.model.enums.TransferState;
+
+import com.example.demo.model.Player;
+import com.example.demo.model.enums.TransferState;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

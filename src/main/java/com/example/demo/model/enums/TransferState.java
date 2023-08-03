@@ -1,4 +1,4 @@
-package com.turkcell.socceronlinemanagement.model.enums;
+package com.example.demo.model.enums;
 
 public enum TransferState {
     TRANSFERRED,

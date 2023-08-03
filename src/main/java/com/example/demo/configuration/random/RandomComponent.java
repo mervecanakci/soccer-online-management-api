@@ -1,4 +1,4 @@
-package com.turkcell.socceronlinemanagement.configuration.random;
+package com.example.demo.configuration.random;
 
 import org.springframework.stereotype.Component;
 

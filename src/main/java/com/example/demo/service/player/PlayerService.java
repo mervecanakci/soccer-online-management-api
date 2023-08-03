@@ -1,8 +1,8 @@
-package com.turkcell.socceronlinemanagement.service.player;
+package com.example.demo.service.player;
 
-import com.turkcell.socceronlinemanagement.model.enums.TransferState;
 
-import java.math.BigDecimal;
+import com.example.demo.model.enums.TransferState;
+
 import java.util.List;
 
 public interface PlayerService {

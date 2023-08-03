@@ -1,6 +1,7 @@
-package com.turkcell.socceronlinemanagement.repository;
+package com.example.demo.repository;
 
-import com.turkcell.socceronlinemanagement.model.Transfer;
+
+import com.example.demo.model.Transfer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TransferRepository extends JpaRepository<Transfer, Integer> {

@@ -1,13 +1,11 @@
-package com.turkcell.socceronlinemanagement.api;
+package com.example.demo.api;
 
 
-import com.turkcell.socceronlinemanagement.service.player.PlayerService;
-import com.turkcell.socceronlinemanagement.service.player.PlayerRequest;
-import com.turkcell.socceronlinemanagement.service.player.PlayerResponse;
-import jakarta.validation.Valid;
+import com.example.demo.service.player.PlayerRequest;
+import com.example.demo.service.player.PlayerResponse;
+import com.example.demo.service.player.PlayerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.turkcell.socceronlinemanagement.core.exceptions;
+package com.example.demo.core.exceptions;
 
 public class BusinessException extends RuntimeException {
     public BusinessException(String message) {

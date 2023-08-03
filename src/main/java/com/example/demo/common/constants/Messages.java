@@ -1,16 +1,8 @@
-package com.turkcell.socceronlinemanagement.common.constants;
+package com.example.demo.common.constants;
 
 public class Messages {
-    public static class Administrator {
-        public static final String NOT_EXISTS = "ADMINISTRATOR_NOT_EXISTS";
-        public static final String EXISTS = "ADMINISTRATOR_ALREADY_EXISTS";
 
-    }
 
-    public static class League {
-        public static final String NOT_EXISTS = "LEAGUE_NOT_EXISTS";
-        public static final String EXISTS = "LEAGUE_ALREADY_EXISTS";
-    }
 
     public static class Player {
         public static final String NOT_EXISTS = "PLAYER_NOT_EXISTS";
@@ -33,10 +25,10 @@ public class Messages {
     }
 
     public static class User {
-        public static final String NOT_EXISTS = "USER_NOT_EXISTS";
-        public static final String EXISTS = "USER_ALREADY_EXISTS";
-        //  public static final String EMAIL_NOT_VALID = "EMAIL MUST MATCH THE PATTERN ";
-        public static final String EMAIL_ALREADY_EXISTS = "EMAIL_ALREADY_EXISTS";
+        public static final String NotExists = "USER_NOT_EXISTS";
+        public static final String Exists = "USER_ALREADY_EXISTS";
+        public static final String EmailNotValid = "email number must match the pattern";
+
     }
 
     public static class Payment {

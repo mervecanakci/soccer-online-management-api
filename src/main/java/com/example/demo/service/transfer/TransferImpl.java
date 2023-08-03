@@ -1,20 +1,16 @@
-package com.turkcell.socceronlinemanagement.service.transfer;
+package com.example.demo.service.transfer;
 
-import com.turkcell.socceronlinemanagement.common.dto.CreateTransferPaymentRequest;
-import com.turkcell.socceronlinemanagement.model.Player;
-import com.turkcell.socceronlinemanagement.model.Team;
-import com.turkcell.socceronlinemanagement.service.payment.PaymentService;
-import com.turkcell.socceronlinemanagement.service.player.PlayerService;
-import com.turkcell.socceronlinemanagement.service.player.PlayerRequest;
-import com.turkcell.socceronlinemanagement.service.player.PlayerResponse;
-import com.turkcell.socceronlinemanagement.model.Transfer;
-import com.turkcell.socceronlinemanagement.model.enums.TransferState;
-import com.turkcell.socceronlinemanagement.repository.TransferRepository;
-import com.turkcell.socceronlinemanagement.service.team.TeamService;
-import com.turkcell.socceronlinemanagement.service.user.UserService;
+
+import com.example.demo.model.Transfer;
+import com.example.demo.model.enums.TransferState;
+import com.example.demo.repository.PlayerRepository;
+import com.example.demo.repository.TransferRepository;
+import com.example.demo.service.payment.PaymentService;
+import com.example.demo.service.player.PlayerRequest;
+import com.example.demo.service.player.PlayerResponse;
+import com.example.demo.service.player.PlayerService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,6 +24,7 @@ public class TransferImpl implements TransferService {
     private final TransferRepository repository;
     private final ModelMapper mapper;
     private final PaymentService paymentService;
+    private final PlayerRepository playerRepository;
     private final TransferBusinessRules rules;
     private final Random random;
 ////todo: denedin olmadı bu manuel setledin
@@ -81,17 +78,16 @@ public class TransferImpl implements TransferService {
     public TransferResponse add(TransferRequest request) {
         rules.checkIfPlayerUnderTransfer(request.getPlayerId());
         rules.checkPlayerAvailabilityForTransfer(playerService.getById(request.getPlayerId()).getTransferState());
-        Transfer transfer = mapper.map(request, Transfer.class);
-        transfer.setId(0);
+      //  Transfer transfer = mapper.map(request, Transfer.class);
+        Transfer transfer = new Transfer();
+        transfer.setPlayer(playerRepository.findById(request.getPlayerId()).get());
+        transfer.setPlayerMarketValue(processTransfer(transfer));
+        transfer.setPrice(request.getPrice());
         transfer.setCompleted(false);
         transfer.setDateOfTransfer(LocalDateTime.now());
         transfer.setEndDate(null);
         repository.save(transfer);
         playerService.changeTransferState(request.getPlayerId(), TransferState.TRANSFERRED);
-       request.setPlayerMarketValue(processTransfer(transfer));
-        transfer.setCompleted(false);
-        transfer.setDateOfTransfer(LocalDateTime.now());
-        transfer.setEndDate(null);
 
         /////  TransferRequest.builder().playerId(0).build(); //todo nedennn    :(
 
@@ -109,19 +105,21 @@ public class TransferImpl implements TransferService {
         playerService.changeTransferState(request.getPlayerId(), TransferState.TRANSFERRED);
 
         //  playerService.changeTransferState(transfer.getPlayerId(), TransferState.TRANSFERRED);
-        playerService.changeTransferState(request.getPlayerId(), TransferState.TRANSFERRED);
-        TransferResponse response = mapper.map(transfer, TransferResponse.class);
+    //    playerService.changeTransferState(request.getPlayerId(), TransferState.TRANSFERRED);
+        //TransferResponse response = mapper.map(transfer, TransferResponse.class);
+        TransferResponse response = new TransferResponse();
         response.setId(transfer.getId());
-        response.setTeamValue(request.getTeamValue());
-        response.setPrice(request.getPrice());
+        response.setTeamName(transfer.getTeamName());
+        response.setTeamValue(transfer.getTeamValue());
+        response.setPrice(transfer.getPrice());
         response.setPlayerMarketValue(processTransfer(transfer));
         response.setDateOfTransfer(transfer.getDateOfTransfer());
 
-        //todo takım değişmeyi burada service ile yapmıştım olduğundan emin değilim
-        PlayerRequest playerRequest = new PlayerRequest();
-        createPlayerRequest(request, playerRequest, transfer);
-       // transfer.setTeamId(transfer.getOldTeamId()); //todo: doğru mu
-        playerService.add(playerRequest);
+//        //todo takım değişmeyi burada service ile yapmıştım olduğundan emin değilim
+//        PlayerRequest playerRequest = new PlayerRequest();
+//        createPlayerRequest(request, playerRequest, transfer);
+//       // transfer.setTeamId(transfer.getOldTeamId()); //todo: doğru mu
+//        playerService.add(playerRequest);
 
         return response;
 

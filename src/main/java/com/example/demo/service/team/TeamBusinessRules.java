@@ -1,9 +1,9 @@
-package com.turkcell.socceronlinemanagement.service.team;
+package com.example.demo.service.team;
 
-import com.turkcell.socceronlinemanagement.common.constants.Messages;
-import com.turkcell.socceronlinemanagement.core.exceptions.BusinessException;
-import com.turkcell.socceronlinemanagement.repository.TeamRepository;
-import lombok.AllArgsConstructor;
+
+import com.example.demo.common.constants.Messages;
+import com.example.demo.core.exceptions.BusinessException;
+import com.example.demo.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

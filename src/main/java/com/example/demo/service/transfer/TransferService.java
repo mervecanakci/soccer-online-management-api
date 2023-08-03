@@ -1,4 +1,4 @@
-package com.turkcell.socceronlinemanagement.service.transfer;
+package com.example.demo.service.transfer;
 
 import java.util.List;
 

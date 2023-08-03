@@ -1,14 +1,11 @@
-package com.turkcell.socceronlinemanagement.model;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import com.turkcell.socceronlinemanagement.model.Team;
 @Data
 @Entity
 @NoArgsConstructor
@@ -20,7 +17,7 @@ public class Transfer {
     private int id;
     private String teamName;
     private int teamValue;
-    private double playerMarketValue = 100000.0;
+    private double playerMarketValue = 1000000;
     private double  price;
     private LocalDateTime dateOfTransfer;
     private boolean isCompleted;

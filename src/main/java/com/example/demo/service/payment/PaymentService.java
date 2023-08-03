@@ -1,7 +1,7 @@
-package com.turkcell.socceronlinemanagement.service.payment;
+package com.example.demo.service.payment;
 
 
-import com.turkcell.socceronlinemanagement.common.dto.CreateTransferPaymentRequest;
+import com.example.demo.common.dto.CreateTransferPaymentRequest;
 
 import java.util.List;
 

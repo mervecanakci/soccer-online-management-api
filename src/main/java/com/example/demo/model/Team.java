@@ -1,12 +1,10 @@
-package com.turkcell.socceronlinemanagement.model;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -24,15 +22,16 @@ public class Team {
 
 
 
-    @ManyToOne
-    @JoinColumn(name = "league_id")
-    public League league;
+
 
     @OneToMany(mappedBy = "team")
     private List<Player> players;
 
-    @OneToOne
-//    @OneToOne(mappedBy = "team")
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+////    @OneToOne
+//  @OneToOne(mappedBy = "team")
+//   // @JoinColumn(name = "user_id")
+//    private User user;
 }

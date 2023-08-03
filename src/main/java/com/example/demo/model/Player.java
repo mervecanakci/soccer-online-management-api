@@ -1,14 +1,14 @@
-package com.turkcell.socceronlinemanagement.model;
+package com.example.demo.model;
 
-import com.turkcell.socceronlinemanagement.model.enums.Position;
-import com.turkcell.socceronlinemanagement.model.enums.TransferState;
+
+import com.example.demo.model.enums.Position;
+import com.example.demo.model.enums.TransferState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data

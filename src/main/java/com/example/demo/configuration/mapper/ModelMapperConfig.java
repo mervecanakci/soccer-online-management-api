@@ -1,4 +1,4 @@
-package com.turkcell.socceronlinemanagement.configuration.mapper;
+package com.example.demo.configuration.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

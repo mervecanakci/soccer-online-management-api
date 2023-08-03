@@ -1,4 +1,4 @@
-package com.turkcell.socceronlinemanagement.service.transfer;
+package com.example.demo.service.transfer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class TransferResponse {
     private int id;
-    private int teamId;
+   // private int teamId;
    // private Integer oldTeamId; //todo: eski takımı da tutmak lazım
    // private Integer newTeamId;
     private String teamName;

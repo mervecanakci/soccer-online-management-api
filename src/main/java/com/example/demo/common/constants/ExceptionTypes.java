@@ -1,4 +1,4 @@
-package com.turkcell.socceronlinemanagement.common.constants;
+package com.example.demo.common.constants;
 
 public class ExceptionTypes {
     public static class Exception {

@@ -1,25 +1,25 @@
-package com.turkcell.socceronlinemanagement.service.team;
+package com.example.demo.service.team;
 
-import com.turkcell.socceronlinemanagement.model.*;
-import com.turkcell.socceronlinemanagement.repository.PlayerRepository;
-import com.turkcell.socceronlinemanagement.repository.TeamRepository;
-import com.turkcell.socceronlinemanagement.service.league.LeagueRequest;
-import com.turkcell.socceronlinemanagement.service.player.PlayerBusinessRules;
-import com.turkcell.socceronlinemanagement.service.player.PlayerImpl;
-import com.turkcell.socceronlinemanagement.service.player.PlayerRequest;
-import com.turkcell.socceronlinemanagement.service.player.PlayerResponse;
-import com.turkcell.socceronlinemanagement.service.transfer.TransferBusinessRules;
-import com.turkcell.socceronlinemanagement.service.transfer.TransferPlayerRequest;
-import com.turkcell.socceronlinemanagement.service.transfer.TransferService;
-import com.turkcell.socceronlinemanagement.service.user.UserAuthRequest;
+
+import com.example.demo.model.Player;
+import com.example.demo.model.Team;
+import com.example.demo.repository.PlayerRepository;
+import com.example.demo.repository.TeamRepository;
+import com.example.demo.service.player.PlayerBusinessRules;
+import com.example.demo.service.player.PlayerImpl;
+import com.example.demo.service.player.PlayerRequest;
+import com.example.demo.service.player.PlayerResponse;
+import com.example.demo.service.transfer.TransferBusinessRules;
+import com.example.demo.service.transfer.TransferPlayerRequest;
+import com.github.javafaker.Faker;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -61,16 +61,11 @@ public class TeamImpl implements TeamService {
     public TeamResponse add(TeamRequest request) {
         Team team = mapper.map(request, Team.class);
         team.setId(0);
-        TeamRequest teamRequest = new TeamRequest();
-        User user = new User();
-        League league = new League();
-        configureModelMapper(user, league, teamRequest );
-
         repository.save(team);
         TeamResponse response = mapper.map(team, TeamResponse.class);
 
         PlayerRequest playerRequest = new PlayerRequest();
-        List<PlayerResponse> playersForTeam = playerManager.add(playerRequest);
+        List<PlayerResponse> playersForTeam = playerManager.add(playerRequest); //playerManager.add(playerRequest) ile playerManager dan playerRequest i alıyoruz
         for (PlayerResponse playerResponse : playersForTeam) {
             team.setTeamValue(team.getTeamValue() + playerRequest.getMarketValue());
             Player player = mapper.map(playerResponse, Player.class);
@@ -100,7 +95,7 @@ public class TeamImpl implements TeamService {
     }
 
     @Override
-    public TeamResponse addTransferPlayer(TransferPlayerRequest request) {
+    public TeamResponse addTransferPlayer(@Valid TransferPlayerRequest request) {
         playerBusinessRules.checkIfPlayerExistsById(request.getPlayerId());
         transferBusinessRules.checkIfTransferExistsById(request.getPlayerId());
         teamBusinessRules.checkIfTeamExistsById(request.getPlayerId());
@@ -122,35 +117,16 @@ public class TeamImpl implements TeamService {
         return request.getPrice() + increaseAmount;
 
     }
-    private void configureModelMapper(User user, League league, TeamRequest teamRequest) {
-        // playerCountry alanını TeamResponse sınıfındaki setPlayerCountry() ile eşleştir
-        teamRequest.setUserId(user.getId());
-        teamRequest.setLeagueId(league.getId());
-        teamRequest.setTeamName( teamRequest.getTeamName());
-        teamRequest.setTeamCountry(teamRequest.getTeamCountry());
-    }
 
-
-//    public Team createTeamForUser() {
+//    private List<Team> generateTeam() {
+//        List<Team> teams = new ArrayList<>();
 //        Team team = new Team();
-//
-//        team.setPlayers(createPlayers(Position.GOALKEEPER, 3));
-//        team.getPlayers().addAll(createPlayers(Position.DEFENDER, 6));
-//        team.getPlayers().addAll(createPlayers(Position.MIDFIELDER, 6));
-//        team.getPlayers().addAll(createPlayers(Position.ATTACKER, 5));
-//
-//        return team;
+//        team.setTeamName(Faker.instance().team().name());
+//        team.setTeamCountry(Faker.instance().address().country());
+//        teams.add(team);
+//        return teams;
 //    }
-//
-//    private List<Player> createPlayers(Position position, int count) {
-//        List<Player> players = new ArrayList<>();
-//        for (int i = 0; i < count; i++) {
-//            Player player = new Player();
-//            player.setPosition(position);
-//            players.add(player);
-//        }
-//        return players;
-//    }
+
 }
 
 

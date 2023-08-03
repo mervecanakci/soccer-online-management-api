@@ -1,9 +1,10 @@
-package com.turkcell.socceronlinemanagement.service.transfer;
+package com.example.demo.service.transfer;
 
-import com.turkcell.socceronlinemanagement.common.constants.Messages;
-import com.turkcell.socceronlinemanagement.core.exceptions.BusinessException;
-import com.turkcell.socceronlinemanagement.model.enums.TransferState;
-import com.turkcell.socceronlinemanagement.repository.TransferRepository;
+
+import com.example.demo.common.constants.Messages;
+import com.example.demo.core.exceptions.BusinessException;
+import com.example.demo.model.enums.TransferState;
+import com.example.demo.repository.TransferRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

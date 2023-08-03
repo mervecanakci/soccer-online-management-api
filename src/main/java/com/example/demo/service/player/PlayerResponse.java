@@ -1,12 +1,11 @@
-package com.turkcell.socceronlinemanagement.service.player;
+package com.example.demo.service.player;
 
-import com.turkcell.socceronlinemanagement.model.enums.Position;
-import com.turkcell.socceronlinemanagement.model.enums.TransferState;
+
+import com.example.demo.model.enums.Position;
+import com.example.demo.model.enums.TransferState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor

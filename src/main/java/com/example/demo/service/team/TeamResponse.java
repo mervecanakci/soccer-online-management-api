@@ -1,11 +1,11 @@
-package com.turkcell.socceronlinemanagement.service.team;
+package com.example.demo.service.team;
 
-import com.turkcell.socceronlinemanagement.service.player.PlayerResponse;
+
+import com.example.demo.service.player.PlayerResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data

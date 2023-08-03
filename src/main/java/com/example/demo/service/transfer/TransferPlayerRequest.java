@@ -1,6 +1,7 @@
-package com.turkcell.socceronlinemanagement.service.transfer;
+package com.example.demo.service.transfer;
 
-import lombok.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor

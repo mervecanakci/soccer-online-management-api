@@ -1,8 +1,9 @@
-package com.turkcell.socceronlinemanagement.adapters;
+package com.example.demo.adapters;
 
-import com.turkcell.socceronlinemanagement.service.payment.PosService;
-import com.turkcell.socceronlinemanagement.common.constants.Messages;
-import com.turkcell.socceronlinemanagement.core.exceptions.BusinessException;
+
+import com.example.demo.common.constants.Messages;
+import com.example.demo.core.exceptions.BusinessException;
+import com.example.demo.service.payment.PosService;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;

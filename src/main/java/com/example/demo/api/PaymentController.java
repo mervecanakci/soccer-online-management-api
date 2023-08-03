@@ -1,9 +1,9 @@
-package com.turkcell.socceronlinemanagement.api;
+package com.example.demo.api;
 
 
-import com.turkcell.socceronlinemanagement.service.payment.PaymentService;
-import com.turkcell.socceronlinemanagement.service.payment.PaymentRequest;
-import com.turkcell.socceronlinemanagement.service.payment.PaymentResponse;
+import com.example.demo.service.payment.PaymentRequest;
+import com.example.demo.service.payment.PaymentResponse;
+import com.example.demo.service.payment.PaymentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

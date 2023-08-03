@@ -1,23 +1,17 @@
-package kodlama.io.ecommerce.business.abstracts;
+package com.example.demo.service.user;
 
-import kodlama.io.ecommerce.business.dto.requests.create.CreateUserRequest;
-import kodlama.io.ecommerce.business.dto.requests.update.UpdateUserRequest;
-import kodlama.io.ecommerce.business.dto.responses.create.CreateUserResponse;
-import kodlama.io.ecommerce.business.dto.responses.get.GetUserResponse;
-import kodlama.io.ecommerce.business.dto.responses.get.all.GetAllUsersResponse;
-import kodlama.io.ecommerce.business.dto.responses.update.UpdateUserResponse;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<GetAllUsersResponse> getAll();
+    List<UsersResponse> getAll();
 
-    GetUserResponse getById(int id);
+    UsersResponse getById(int id);
 
-    CreateUserResponse add(CreateUserRequest request);
+    UsersResponse add(UserRequest request);
 
-    UpdateUserResponse update(int id, UpdateUserRequest request);
+    UsersResponse update(int id, UserRequest request);
 
     void delete(int id);
 }
